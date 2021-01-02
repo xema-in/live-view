@@ -29,14 +29,14 @@ export class AppComponent {
         }
 
         case "Connected": {
-          this.router.navigateByUrl("/phone");
-          break;
-        }
+          //   this.router.navigateByUrl("/phone");
+          //   break;
+          // }
 
-        case "Ready": {
+          // case "Ready": {
           const bus = this.service.getServerConnection();
-          bus.refreshPhoneState();
-          bus.getAgentInfo();
+          // bus.refreshPhoneState();
+          // bus.getAgentInfo();
           this.router.navigateByUrl("/dashboard");
           break;
         }
