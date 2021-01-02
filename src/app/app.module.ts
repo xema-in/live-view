@@ -17,6 +17,8 @@ import { PhoneSelectionComponent } from './auth/phone-selection/phone-selection.
 import { ConnectComponent } from './auth/connect/connect.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
+import { TeamMonitorPanelModule } from '@xema/team-monitor-panel';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     AppRoutingModule,
     AppMaterialComponentsModule,
+    QueueMonitorPanelModule,
+    TeamMonitorPanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

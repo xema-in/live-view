@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerConnection } from 'jema';
 import { BackendService } from '../_shared/backend.service';
 
 @Component({
@@ -8,8 +9,10 @@ import { BackendService } from '../_shared/backend.service';
 })
 
 export class DashboardComponent implements OnInit {
+  serverConnection: ServerConnection;
 
   constructor(private service: BackendService) {
+    this.serverConnection = service.getServerConnection();
   }
 
   ngOnInit() {
