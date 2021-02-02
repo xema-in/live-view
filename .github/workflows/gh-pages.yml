@@ -13,14 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: npm dependencies
-        run: npm install
-
-      - name: publish
-        run: npm run publish
-
-      - name: list files
-        run: find ./dist
+      - run: |
+          npm ci
+          npm run prod
+          find ./dist
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
