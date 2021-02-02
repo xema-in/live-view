@@ -2,9 +2,8 @@ name: CI
 
 on:
   pull_request:
-    branches: [main]
-
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   build:
@@ -13,8 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: npm install
-        run: npm install
-
-      - name: npm run build
-        run: npm run build
+      - run: |
+          npm ci
+          npm run prod

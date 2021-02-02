@@ -17,6 +17,11 @@ import { PhoneSelectionComponent } from './auth/phone-selection/phone-selection.
 import { ConnectComponent } from './auth/connect/connect.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+
+import { TimeagoModule, TimeagoFormatter, TimeagoClock } from 'ngx-timeago';
+import { CustomClock } from './_code/custom-clock';
+import { CustomFormatter } from './_code/custom-formatter';
+
 import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
 import { TeamMonitorPanelModule } from '@xema/team-monitor-panel';
 
@@ -40,6 +45,10 @@ import { TeamMonitorPanelModule } from '@xema/team-monitor-panel';
     ReactiveFormsModule,
     AppRoutingModule,
     AppMaterialComponentsModule,
+    TimeagoModule.forRoot({
+      formatter: { provide: TimeagoFormatter, useClass: CustomFormatter },
+      clock: { provide: TimeagoClock, useClass: CustomClock },
+    }),
     QueueMonitorPanelModule,
     TeamMonitorPanelModule,
   ],
