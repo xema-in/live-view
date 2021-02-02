@@ -24,7 +24,7 @@ import { CustomFormatter } from './_code/custom-formatter';
 
 import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
 import { TeamMonitorPanelModule } from '@xema/team-monitor-panel';
-
+import { TeamMonitorTablePanelModule } from '@xema/team-monitor-table-panel';
 
 @NgModule({
   declarations: [
@@ -51,8 +51,9 @@ import { TeamMonitorPanelModule } from '@xema/team-monitor-panel';
     }),
     QueueMonitorPanelModule,
     TeamMonitorPanelModule,
+    TeamMonitorTablePanelModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
