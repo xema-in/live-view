@@ -30,9 +30,9 @@ export class NavTopbarComponent implements OnInit {
       this.breakState = state;
     });
 
-    this.bus.agentInfo.subscribe((res) => {
-      this.info = res;
-    });
+    // this.bus.agentInfo.subscribe((res) => {
+    //   this.info = res;
+    // });
   }
 
   Logoff() {
