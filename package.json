@@ -26,7 +26,7 @@
     "@xema/queue-monitor-panel": "0.0.8",
     "@xema/queue-monitor-table-panel": "0.0.6",
     "@xema/team-monitor-panel": "0.0.8",
-    "@xema/team-monitor-table-panel": "0.0.10",
+    "@xema/team-monitor-table-panel": "0.0.11",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "jema": "0.0.52",
