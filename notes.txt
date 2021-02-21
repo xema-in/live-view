@@ -8,6 +8,8 @@ Update Dependencies
 
 npm install @xema/queue-monitor-panel@latest
 npm install @xema/team-monitor-panel@latest
+npm install @xema/team-monitor-table-panel@latest
+
 
 
 ng build --prod
