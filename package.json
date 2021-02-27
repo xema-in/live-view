@@ -25,7 +25,7 @@
     "@angular/router": "~11.0.5",
     "@xema/queue-monitor-panel": "0.0.13",
     "@xema/queue-monitor-table-panel": "0.0.10",
-    "@xema/team-monitor-table-panel": "0.0.15",
+    "@xema/team-monitor-table-panel": "0.0.16",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "jema": "0.0.56",
