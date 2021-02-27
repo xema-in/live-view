@@ -23,7 +23,6 @@ import { CustomClock } from './_code/custom-clock';
 import { CustomFormatter } from './_code/custom-formatter';
 
 import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
-import { TeamMonitorPanelModule } from '@xema/team-monitor-panel';
 import { TeamMonitorTablePanelModule } from '@xema/team-monitor-table-panel';
 import { QueueMonitorTablePanelModule } from '@xema/queue-monitor-table-panel';
 
@@ -51,11 +50,10 @@ import { QueueMonitorTablePanelModule } from '@xema/queue-monitor-table-panel';
       clock: { provide: TimeagoClock, useClass: CustomClock },
     }),
     QueueMonitorPanelModule,
-    TeamMonitorPanelModule,
     TeamMonitorTablePanelModule,
     QueueMonitorTablePanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

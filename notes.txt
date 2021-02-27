@@ -6,8 +6,9 @@ git pull https://github.com/KalluriM/live-view.git main
 Update Dependencies
 ===================
 
+npm install jema@latest
 npm install @xema/queue-monitor-panel@latest
-npm install @xema/team-monitor-panel@latest
+npm install @xema/queue-monitor-table-panel@latest
 npm install @xema/team-monitor-table-panel@latest
 
 
