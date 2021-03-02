@@ -12,27 +12,12 @@ import { Authenticator, ServerConnection } from 'jema';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm!: FormGroup;
+  public loginForm: FormGroup;
   manager!: string;
   isLoading = false;
   disable = false;
 
-  constructor(private service: BackendService) { }
-
-  ngOnInit() {
-    this.disable = false;
-    this.manager = ManagerEnvironment.getBackendUrl();
-
-
-    // this.service.IsAgentAuthenticated().subscribe(
-    //   data => {
-    //     this.bus.setAppState({ state: 'LoggedIn' });
-    //   },
-    //   err => {
-    //     console.error(err);
-    //   }
-    // );
-
+  constructor(private service: BackendService) {
     this.loginForm = new FormGroup({
       username: new FormControl('', [
         Validators.required, Validators.maxLength(60),
@@ -40,7 +25,10 @@ export class LoginComponent implements OnInit {
       ]),
       password: new FormControl('', [Validators.required, Validators.maxLength(100)])
     });
+  }
 
+  ngOnInit() {
+    this.manager = ManagerEnvironment.getBackendUrl();
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -57,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.isLoading = false;
         this.disable = false;
         this.service.saveToken(data.auth_token);
-        this.service.setAppState({ state: 'LoggedIn' });
+        this.service.setAppState({ state: 'LoggedIn', connected: false });
       },
       err => {
         this.isLoading = false;

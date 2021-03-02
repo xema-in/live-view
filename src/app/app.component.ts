@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { BackendService } from './_shared/backend.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class AppComponent {
   constructor(private service: BackendService, private router: Router) {
     this.service.appState.subscribe((state) => {
       switch (state.state) {
+
         case "Unknown": {
           this.router.navigateByUrl("/server");
           break;
@@ -28,15 +30,13 @@ export class AppComponent {
           break;
         }
 
-        case "Connected": {
-          //   this.router.navigateByUrl("/phone");
-          //   break;
-          // }
+        case 'RemoteLogout': {
+          this.router.navigateByUrl('/reconnect/true');
+          break;
+        }
 
-          // case "Ready": {
-          const bus = this.service.getServerConnection();
-          // bus.refreshPhoneState();
-          // bus.getAgentInfo();
+        case "Connected": {
+          this.monitorConnection();
           this.router.navigateByUrl("/dashboard");
           break;
         }
@@ -47,6 +47,43 @@ export class AppComponent {
         }
       }
     });
+  }
+
+  monitorConnection() {
+
+    this.service.getServerConnection().connectionState.subscribe((connectionState) => {
+
+      if (connectionState.connected === false) {
+
+        switch (connectionState.state) {
+
+          case 'Logout': {
+            this.service.setAppState({ state: 'Unknown', connected: false });
+            break;
+          }
+
+          case 'RemoteLogout': {
+            Swal.fire({
+              icon: 'info',
+              title: 'Remote Logout',
+              text: 'Your session is terminated!'
+            }).then(() => {
+              this.service.setAppState({ state: 'RemoteLogout', connected: false });
+            });
+            break;
+          }
+
+          case 'Disconnected': {
+            Swal.fire({ icon: 'error', title: 'Disconnected!', text: 'Connection to the Server disconnected.' });
+            break;
+          }
+
+        }
+
+      }
+
+    });
+
   }
 
 }

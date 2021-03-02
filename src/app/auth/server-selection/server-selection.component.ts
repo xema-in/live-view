@@ -11,20 +11,21 @@ import { NetworkTester } from 'jema';
 })
 export class ServerSelectionComponent implements OnInit {
 
-  public serverSelectionForm!: FormGroup;
+  public serverSelectionForm: FormGroup;
   tester = new NetworkTester();
 
-  constructor(private service: BackendService) { }
-
-  ngOnInit() {
+  constructor(private service: BackendService) {
     this.serverSelectionForm = new FormGroup({
       serverIp: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     });
+  }
+
+  ngOnInit() {
 
     if (ManagerEnvironment.getBackendUrl() !== null &&
       ManagerEnvironment.getBackendUrl() !== undefined &&
       ManagerEnvironment.getBackendUrl() !== '') {
-      this.service.setAppState({ state: 'ServerFound' });
+      this.service.setAppState({ state: 'ServerFound', connected: false });
     } else {
       const detectedServerName = location.hostname + (location.port ? ':' + location.port : '');
       const detectedProtocol = location.protocol;
@@ -49,7 +50,7 @@ export class ServerSelectionComponent implements OnInit {
     }
 
     this.service.saveBackendIpAddress(url);
-    this.service.setAppState({ state: 'ServerFound' });
+    this.service.setAppState({ state: 'ServerFound', connected: false });
   }
 
 

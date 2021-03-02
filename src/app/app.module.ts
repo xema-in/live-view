@@ -7,13 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialComponentsModule } from './app-material.module';
 import { AppComponent } from './app.component';
 
-import { AppLayoutComponent } from './_layout/app-layout/app-layout.component';
-import { LoginLayoutComponent } from './_layout/login-layout/login-layout.component';
-import { NavTopbarComponent } from './_navigation/nav-topbar/nav-topbar.component';
+import { AppLayoutComponent } from './app-layout/app-layout.component';
+import { LoginLayoutComponent } from './login-layout/login-layout.component';
 
 import { ServerSelectionComponent } from './auth/server-selection/server-selection.component';
 import { LoginComponent } from './auth/login/login.component';
-import { PhoneSelectionComponent } from './auth/phone-selection/phone-selection.component';
 import { ConnectComponent } from './auth/connect/connect.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -25,24 +23,26 @@ import { CustomFormatter } from './_code/custom-formatter';
 import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
 import { TeamMonitorTablePanelModule } from '@xema/team-monitor-table-panel';
 import { QueueMonitorTablePanelModule } from '@xema/queue-monitor-table-panel';
+import { BreakLogoutControlComponent } from './break-logout-control/break-logout-control.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppLayoutComponent,
     LoginLayoutComponent,
-    NavTopbarComponent,
     DashboardComponent,
     ServerSelectionComponent,
     LoginComponent,
-    PhoneSelectionComponent,
     ConnectComponent,
+    BreakLogoutControlComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     AppRoutingModule,
     AppMaterialComponentsModule,
     TimeagoModule.forRoot({
