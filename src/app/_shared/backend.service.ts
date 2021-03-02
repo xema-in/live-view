@@ -1,42 +1,51 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ServerConnection } from 'jema';
-import { BehaviorSubject } from 'rxjs';
-import { ReturnStatement } from '@angular/compiler';
+import { BehaviorSubject, interval, Subject } from 'rxjs';
+import { ConnectionState } from 'jema/lib/_interfaces/connection-state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
 
-  private serverConnection: ServerConnection | undefined;
-  public appState = new BehaviorSubject<any>({ state: 'Unknown' });
+  private token!: string;
+  private serverConnection!: ServerConnection;
+  private secondsTimer$ = interval(1000);
+
+  public appState = new BehaviorSubject<ConnectionState>({ state: 'Unknown', connected: false });
+  public secondsClock = new Subject<number>();
 
   constructor() {
+    this.secondsTimer$.subscribe((number) => {
+      this.secondsClock.next(number);
+    })
   }
 
-  setAppState(state: any): void {
+  setAppState(state: ConnectionState): void {
     this.appState.next(state);
   }
 
+
   getToken(): string {
-    let token = localStorage.getItem('access_token');
-    if (token == null) token = '';
-    return token;
+    return this.token;
   }
 
   saveToken(token: string) {
-    localStorage.setItem('access_token', token);
+    this.token = token;
   }
 
   getBackendUrl(): string {
     if (environment.backend !== '') {
       return environment.backend;
-    } else {
-      let backend = localStorage.getItem('backend');
-      if (backend == null) backend = '';
-      return backend;
     }
+
+    const url = localStorage.getItem('backend');
+    if (url !== null) {
+      return url;
+    }
+
+    return '';
   }
 
   saveBackendIpAddress(ip: string) {
@@ -44,7 +53,6 @@ export class BackendService {
   }
 
   getServerConnection(): ServerConnection {
-    if (this.serverConnection == undefined) throw new Error('Server is not connected');
     return this.serverConnection;
   }
 
@@ -53,8 +61,11 @@ export class BackendService {
   }
 
   connect() {
-    if (this.serverConnection == undefined) throw new Error('Server is not setup');
     this.serverConnection.connect();
+  }
+
+  disconnect() {
+    this.serverConnection.disconnect();
   }
 
 }
