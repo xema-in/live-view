@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialComponentsModule } from './app-material.module';
@@ -20,11 +21,11 @@ import { TimeagoModule, TimeagoFormatter, TimeagoClock } from 'ngx-timeago';
 import { CustomClock } from './_code/custom-clock';
 import { CustomFormatter } from './_code/custom-formatter';
 
-import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
-import { TeamMonitorTablePanelModule } from '@xema/team-monitor-table-panel';
-import { QueueMonitorTablePanelModule } from '@xema/queue-monitor-table-panel';
 import { BreakLogoutControlComponent } from './break-logout-control/break-logout-control.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { QueueMonitorPanelModule } from '@xema/queue-monitor-panel';
+import { QueueMonitorTablePanelModule } from '@xema/queue-monitor-table-panel';
+import { TeamMonitorTablePanelModule } from '@xema/team-monitor-table-panel';
+import { DialerMonitorTablePanelModule } from '@xema/dialer-monitor-table-panel';
 
 @NgModule({
   declarations: [
@@ -50,8 +51,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
       clock: { provide: TimeagoClock, useClass: CustomClock },
     }),
     QueueMonitorPanelModule,
-    TeamMonitorTablePanelModule,
     QueueMonitorTablePanelModule,
+    DialerMonitorTablePanelModule,
+    TeamMonitorTablePanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

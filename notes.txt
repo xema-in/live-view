@@ -10,6 +10,7 @@ npm install jema@latest
 npm install @xema/queue-monitor-panel@latest
 npm install @xema/queue-monitor-table-panel@latest
 npm install @xema/team-monitor-table-panel@latest
+npm install @xema/dialer-monitor-table-panel@latest
 
 
 
