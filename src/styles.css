@@ -12,3 +12,8 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.agent-image {
+  background-image: url('assets/female-agent1.jpg');
+  background-size: cover;
+}
