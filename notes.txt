@@ -1,7 +1,6 @@
 Merge
 =====
 git pull https://github.com/xema-in/live-view.git main
-git pull https://github.com/KalluriM/live-view.git main
 
 Update Dependencies
 ===================

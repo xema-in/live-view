@@ -10,12 +10,14 @@ export class AppLayoutComponent implements OnInit {
   showFiller = false;
   constructor() { }
 
-  ngOnInit() {
-    window.addEventListener('beforeunload', function (e) {
+  ngOnInit(): void {
+
+    window.addEventListener('beforeunload', (e) => {
       const confirmationMessage = '\o/';
       e.returnValue = confirmationMessage;
       return confirmationMessage;
     });
+
   }
 
 }

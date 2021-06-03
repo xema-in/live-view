@@ -1,4 +1,14 @@
-<xe-queue-monitor-panel [serverConnection]="serverConnection"></xe-queue-monitor-panel>
-<xe-queue-monitor-table-panel [serverConnection]="serverConnection"></xe-queue-monitor-table-panel>
-<xe-dialer-monitor-table-panel [serverConnection]="serverConnection"></xe-dialer-monitor-table-panel>
-<xe-team-monitor-table-panel [serverConnection]="serverConnection"></xe-team-monitor-table-panel>
+<mat-tab-group animationDuration="0ms">
+  <mat-tab label="Team">
+    <xe-team-monitor-table-panel [serverConnection]="serverConnection"></xe-team-monitor-table-panel>
+  </mat-tab>
+  <mat-tab label="Queues">
+    <xe-queue-monitor-table-panel [serverConnection]="serverConnection"></xe-queue-monitor-table-panel>
+  </mat-tab>
+  <mat-tab label="Dialers">
+    <xe-dialer-monitor-table-panel [serverConnection]="serverConnection"></xe-dialer-monitor-table-panel>
+  </mat-tab>
+  <mat-tab label="Wall">
+    <xe-queue-monitor-panel [serverConnection]="serverConnection"></xe-queue-monitor-panel>
+  </mat-tab>
+</mat-tab-group>
