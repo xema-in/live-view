@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     this.serverConnection = service.getServerConnection();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

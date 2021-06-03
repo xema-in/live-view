@@ -15,18 +15,18 @@ export class AppComponent {
     this.service.appState.subscribe((state) => {
       switch (state.state) {
 
-        case "Unknown": {
-          this.router.navigateByUrl("/server");
+        case 'Unknown': {
+          this.router.navigateByUrl('/server');
           break;
         }
 
-        case "ServerFound": {
-          this.router.navigateByUrl("/login");
+        case 'ServerFound': {
+          this.router.navigateByUrl('/login');
           break;
         }
 
-        case "LoggedIn": {
-          this.router.navigateByUrl("/connect");
+        case 'LoggedIn': {
+          this.router.navigateByUrl('/connect');
           break;
         }
 
@@ -35,21 +35,21 @@ export class AppComponent {
           break;
         }
 
-        case "Connected": {
+        case 'Connected': {
           this.monitorConnection();
-          this.router.navigateByUrl("/dashboard");
+          this.router.navigateByUrl('/dashboard');
           break;
         }
 
         default: {
-          console.log("Unhandled App State: " + state.state);
+          console.log('Unhandled App State: ' + state.state);
           break;
         }
       }
     });
   }
 
-  monitorConnection() {
+  monitorConnection(): void {
 
     this.service.getServerConnection().connectionState.subscribe((connectionState) => {
 
