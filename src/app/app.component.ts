@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { BackendService } from './_shared/backend.service';
@@ -9,10 +10,11 @@ import { BackendService } from './_shared/backend.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'live-view';
 
-  constructor(private service: BackendService, private router: Router) {
+  constructor(private service: BackendService, private router: Router, private title: Title) {
+    this.title.setTitle('Live View');
     this.service.appState.subscribe((state) => {
+      this.title.setTitle('Live View: ' + state.state);
       switch (state.state) {
 
         case 'Unknown': {
@@ -51,7 +53,9 @@ export class AppComponent {
 
   monitorConnection(): void {
 
-    this.service.getServerConnection().connectionState.subscribe((connectionState) => {
+    const conn = this.service.getServerConnection();
+
+    conn.connectionState.subscribe((connectionState) => {
 
       if (connectionState.connected === false) {
 
@@ -83,6 +87,10 @@ export class AppComponent {
       }
 
     });
+
+    // conn.logger.subscribe((entry) => {
+    //   console.log(entry.context, entry.message);
+    // });
 
   }
 
