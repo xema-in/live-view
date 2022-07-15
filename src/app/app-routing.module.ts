@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ConnectComponent } from './auth/connect/connect.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ServerSelectionComponent } from './auth/server-selection/server-selection.component';
