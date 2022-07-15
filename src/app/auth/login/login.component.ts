@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ManagerEnvironment } from 'src/app/_code/manager-environment';
 import { Authenticator, ServerConnection } from 'jema';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +13,21 @@ import { Authenticator, ServerConnection } from 'jema';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm: FormGroup;
+  loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.maxLength(60)]),
+    password: new FormControl('', [Validators.required, Validators.maxLength(100)])
+  });
+
   manager!: string;
   isLoading = false;
   disable = false;
 
   constructor(private service: BackendService) {
-    this.loginForm = new FormGroup({
-      username: new FormControl('', [
-        Validators.required, Validators.maxLength(60),
-        // Validators.pattern('[a-zA-Z1-9]*')
-      ]),
-      password: new FormControl('', [Validators.required, Validators.maxLength(100)])
-    });
   }
 
   ngOnInit() {
     this.manager = ManagerEnvironment.getBackendUrl();
+    if (!environment.production) console.info(this.manager);
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -40,7 +39,10 @@ export class LoginComponent implements OnInit {
     this.disable = true;
 
     const auth = new Authenticator(ManagerEnvironment.getBackendUrl());
-    auth.getAuthToken(this.loginForm.value).subscribe(
+    auth.getAuthToken({
+      username: this.loginForm.value.username ?? '',
+      password: this.loginForm.value.password ?? '',
+    }).subscribe(
       (data: any) => {
         this.isLoading = false;
         this.disable = false;
