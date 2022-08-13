@@ -54,7 +54,7 @@ export class ConnectComponent implements OnInit {
       (err) => {
         this.server.connectionState
           .subscribe((connectionState) => {
-            console.log(connectionState);
+            // console.log(connectionState);
             if (connectionState.connected === true)
               this.service.setAppState({ state: 'Connected', connected: true });
           });
